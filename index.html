@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hexadecimal Explorer | ASCII & Color</title>
+<style>
+:root{font-family:Inter,Segoe UI,Arial,sans-serif;color:#eaf3ff;background:#08152c}*{box-sizing:border-box}body{position:relative;isolation:isolate;margin:0;min-height:100vh;background:radial-gradient(circle at 85% 12%,#244d80 0,transparent 35%),linear-gradient(145deg,#08152c,#102849)}body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='420' viewBox='0 0 600 420'%3E%3Cg fill='none' stroke='%238ad8ff' stroke-width='2'%3E%3Ccircle cx='470' cy='150' r='110'/%3E%3Ccircle cx='470' cy='150' r='70'/%3E%3Cpath d='M0 70H170V155H310M0 300H130V230H320M600 350H430V280H310M400 0V50H470M470 260V420'/%3E%3C/g%3E%3Cg fill='%238ad8ff'%3E%3Ccircle cx='170' cy='70' r='6'/%3E%3Ccircle cx='310' cy='155' r='6'/%3E%3Ccircle cx='320' cy='230' r='6'/%3E%3Ccircle cx='310' cy='280' r='6'/%3E%3C/g%3E%3C/svg%3E");background-size:600px 420px}main{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:44px 22px 60px}.eyebrow{text-align:center;color:#78c5fa;font-weight:750;letter-spacing:.16em;text-transform:uppercase;font-size:14px}h1{font-size:clamp(32px,5vw,52px);margin:12px 0 10px;letter-spacing:-.04em;text-align:center;text-shadow:0 5px 12px #000b,0 0 28px #4dbdff99}main>p:first-of-type{text-align:center}p{color:#bfd2e8;font-size:18px;line-height:1.5}.panel{backdrop-filter:blur(12px);background:#112b4be8;border:1px solid #4c7498;border-radius:24px;padding:28px;margin-top:25px;box-shadow:0 18px 45px #030a1b66}.label{display:block;font-size:20px;font-weight:750;margin-bottom:10px}input{width:min(100%,340px);display:block;background:#06172c;border:2px solid #5c87b4;border-radius:14px;padding:16px 18px;font-size:28px;letter-spacing:.12em;color:#fff;outline:none;text-transform:uppercase}input:focus{border-color:#6bd6ff;box-shadow:0 0 0 3px #2f9dd444}.hint{font-size:15px;color:#a9c4df;margin:10px 0 0}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}button{font:700 19px Inter,Segoe UI,Arial,sans-serif;border:0;border-radius:13px;padding:14px 25px;cursor:pointer;color:#051a30;background:#76d3fa}button.secondary{background:#d5e4f3}button.ghost{background:transparent;color:#e8f4ff;border:1px solid #7e9fbe}button{box-shadow:0 7px 18px #0004;transition:transform .15s,filter .15s}button:hover{filter:brightness(1.1);transform:translateY(-2px)}.results{display:grid;grid-template-columns:1.3fr 1fr;gap:20px}.result h2{font-size:25px;margin:0 0 8px}.small{font-size:16px;margin:0 0 18px}.ascii-boxes{display:flex;gap:12px}.ascii-box{display:grid;place-items:center;min-width:0;flex:1;height:105px;border:2px solid #6595c3;background:#071b34;border-radius:16px;font-size:52px;font-weight:800;color:#fff}.ascii-box.control{font-size:20px;color:#a8c6e6}.circle{width:172px;height:172px;border-radius:50%;background:#53677c;border:9px solid #d8ebfc;box-shadow:0 10px 30px #0005;margin:12px auto 16px}.color-value{text-align:center;font-size:21px;font-weight:800;letter-spacing:.05em}.notice{margin-top:15px;color:#fbe0a3;min-height:24px;font-size:16px;line-height:1.5}.status{margin-top:15px;font-size:16px;min-height:24px;color:#a6e8ff}.footer{margin-top:25px;font-size:15px;color:#a7c0da}@media(max-width:700px){main{padding:28px 14px}.panel{padding:20px}.results{grid-template-columns:1fr}.ascii-box{height:85px;font-size:42px}.circle{width:150px;height:150px}button{flex:1}}
+button[aria-pressed="true"]{outline:3px solid #eaf3ff;outline-offset:3px}button:focus-visible{outline:3px solid #ffdf8a;outline-offset:4px}
+
+/* A centered workspace: input and both outputs share one desktop row. */
+body{display:flex;align-items:center;justify-content:center;min-height:100svh;padding:20px 0}
+main{width:min(1180px,100%);max-width:1180px;margin:auto;padding:12px 24px;display:grid;grid-template-columns:1.15fr 1fr .9fr;gap:16px;text-align:center}
+.eyebrow,h1,main>p{grid-column:1/-1}
+.eyebrow{font-size:14px}
+h1{font-size:clamp(30px,3.6vw,44px);margin:0;line-height:1.15}
+main>p:first-of-type{margin:0 0 4px;font-size:17px;line-height:1.4}
+.results{display:contents}
+.panel{min-width:0;margin:0;padding:22px 18px;border-radius:20px}
+.label{font-size:20px;margin-bottom:14px}
+input{width:min(100%,290px);margin:0 auto;padding:12px 14px;font-size:28px;text-align:center}
+.hint{font-size:15px;line-height:1.45;margin:14px 0 0}
+.actions{justify-content:center;gap:9px;margin-top:18px}
+button{font-size:17px;padding:12px 16px;min-height:44px}
+.status{font-size:14px;line-height:1.4;margin-top:14px;min-height:40px}
+.result h2{font-size:24px;margin:0 0 8px}
+.small{font-size:16px;line-height:1.4;margin:0 0 20px;min-height:44px}
+.ascii-boxes{gap:8px;max-width:320px;margin:0 auto}
+.ascii-box{height:105px;font-size:46px;border-radius:13px}
+.circle{width:140px;height:140px;margin:0 auto 12px;border-width:7px}
+.color-value{font-size:21px}
+.notice{font-size:14px;line-height:1.4;margin-top:14px;min-height:20px;overflow-wrap:anywhere}
+.footer{font-size:14px;line-height:1.5;margin:0 auto;max-width:960px}
+@media(min-width:901px) and (max-height:700px){body{padding:10px 0}main{gap:12px;padding:8px 24px}.panel{padding:18px 16px}.small{margin-bottom:14px}.circle{width:120px;height:120px}h1{font-size:36px}}
+@media(max-width:900px){body{padding:16px 0}main{grid-template-columns:1fr 1fr;gap:14px;padding:12px 18px}main>section.panel{grid-column:1/-1}.hint{max-width:620px;margin:12px auto 0}.status{min-height:20px}.small{min-height:0}button{flex:0 1 auto}}
+@media(max-width:480px){main{padding:8px 12px;gap:12px}.panel{padding:16px 10px}.result h2{font-size:20px}.small{font-size:14px;min-height:40px}.ascii-boxes{gap:5px}.ascii-box{height:70px;font-size:32px}.ascii-box.control{font-size:16px}.circle{width:100px;height:100px}.color-value{font-size:17px}.eyebrow{font-size:12px}.footer{font-size:13px}}
+</style>
+</head>
+<body><main>
+<div class="eyebrow">Introduction to Computer Science</div><h1>Hexadecimal Explorer</h1><p>One hexadecimal value, two ways to interpret data: ASCII text and RGB color.</p>
+<section class="panel"><label class="label" for="hex">Enter hexadecimal digits</label><input id="hex" type="text" maxlength="6" placeholder="e.g. 414243" spellcheck="false" autocomplete="off" aria-describedby="hint"><p class="hint" id="hint">Enter 2, 4, or 6 digits for 1–3 ASCII characters. Enter exactly 6 digits for a color. Click ASCII to reveal text or Color to reveal the color. You can click both without resetting.</p><div class="actions"><button id="textBtn" aria-pressed="false">ASCII</button><button id="colorBtn" aria-pressed="false">Color</button><button id="resetBtn" class="ghost">Reset</button></div><div class="status" id="status" role="status" aria-live="polite"></div></section>
+<div class="results"><section class="panel result"><h2>ASCII Text</h2><p class="small">Each pair of hex digits represents one byte.</p><div class="ascii-boxes"><div class="ascii-box" id="c0" aria-label="Character one">—</div><div class="ascii-box" id="c1" aria-label="Character two">—</div><div class="ascii-box" id="c2" aria-label="Character three">—</div></div><div class="notice" id="asciiNote" aria-live="polite"></div></section><section class="panel result"><h2>RGB Color</h2><p class="small">Six digits: RR GG BB</p><div class="circle" id="circle" aria-label="Color preview"></div><div class="color-value" id="colorLabel">#———</div><div class="notice" id="colorNote" aria-live="polite"></div></section></div>
+<p class="footer">Try <strong>414243</strong> → A B C, or <strong>FF5733</strong> → a bright orange-red color. ASCII uses codes 00–7F; codes 00–1F and 7F are non-displayable control characters.</p>
+</main><script>
+const input=document.getElementById('hex'),statusMessage=document.getElementById('status');
+const boxes=[0,1,2].map(i=>document.getElementById('c'+i));
+const note=document.getElementById('asciiNote'),circle=document.getElementById('circle'),colorLabel=document.getElementById('colorLabel'),colorNote=document.getElementById('colorNote');
+const textButton=document.getElementById('textBtn'),colorButton=document.getElementById('colorBtn');
+let textSelected=false,colorSelected=false;
+function value(){return input.value.trim().toUpperCase()}
+function clearText(){boxes.forEach(b=>{b.textContent='—';b.classList.remove('control')});note.textContent=''}
+function clearColor(){circle.style.backgroundColor='#53677c';colorLabel.textContent='#———';colorNote.textContent=''}
+function renderText(v){
+  clearText();
+  if(!/^(?:[0-9A-F]{2}){1,3}$/.test(v)){note.textContent='For ASCII, enter 2, 4, or 6 hexadecimal digits (0–9, A–F).';return}
+  const warnings=[];
+  for(let i=0;i<v.length;i+=2){const hex=v.slice(i,i+2),n=parseInt(hex,16),b=boxes[i/2];
+    if(n>=32&&n<=126){b.textContent=n===32?'␣':String.fromCharCode(n)}
+    else{b.textContent='N/A';b.classList.add('control');warnings.push(n<=31||n===127?`${hex} is a non-displayable ASCII control code.`:`${hex} is outside the standard 7-bit ASCII range.`)}
+  }
+  note.textContent=warnings.join(' ');
+}
+function renderColor(v){
+  clearColor();
+  if(!/^[0-9A-F]{6}$/.test(v)){colorNote.textContent='For color, enter exactly 6 hexadecimal digits (RRGGBB).';return}
+  circle.style.backgroundColor='#'+v;colorLabel.textContent='#'+v;
+  const [r,g,b]=[0,2,4].map(i=>parseInt(v.slice(i,i+2),16));
+  colorNote.textContent=`Red: ${r} · Green: ${g} · Blue: ${b}`;
+}
+function updateButtons(){
+  textButton.setAttribute('aria-pressed',String(textSelected));
+  colorButton.setAttribute('aria-pressed',String(colorSelected));
+}
+function showText(){
+  textSelected=true;
+  renderText(value());
+  updateButtons();
+  statusMessage.textContent='ASCII requested. Click Color to also reveal the color.';
+}
+function showColor(){
+  colorSelected=true;
+  renderColor(value());
+  updateButtons();
+  statusMessage.textContent='Color requested. Click ASCII to also reveal the text.';
+}
+function clearResults(){
+  textSelected=false;colorSelected=false;
+  clearText();clearColor();updateButtons();
+  statusMessage.textContent=input.value?'Click ASCII or Color to reveal a result.':'';
+}
+function reset(){input.value='';clearResults();input.focus()}
+textButton.addEventListener('click',showText);
+colorButton.addEventListener('click',showColor);
+document.getElementById('resetBtn').addEventListener('click',reset);
+input.addEventListener('input',clearResults);
+</script></body></html>
